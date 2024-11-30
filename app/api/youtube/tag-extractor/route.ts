@@ -12,9 +12,7 @@ export async function GET(req: Request) {
 
   try {
     const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Failed to fetch video data');
-    }
+    if (!response.ok) throw new Error('Failed to fetch video data');
     const data = await response.json();
     const tags = data.items[0]?.snippet?.tags || [];
     return NextResponse.json({ tags });
